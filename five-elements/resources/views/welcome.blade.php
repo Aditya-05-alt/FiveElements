@@ -72,10 +72,18 @@
                         <a href="#home" class="hover:text-element-gold px-3 py-2 text-sm font-medium transition-colors">Home</a>
                         <a href="#collection-tabs" class="hover:text-element-gold px-3 py-2 text-sm font-medium transition-colors">Metals Collections</a>
                         <a href="#our-work" class="hover:text-element-gold px-3 py-2 text-sm font-medium transition-colors">Our Work</a>
+                        <a href="#about" class="hover:text-element-gold px-3 py-2 text-sm font-medium transition-colors">About Us</a>
                         <a href="#contact" class="hover:text-element-gold px-3 py-2 text-sm font-medium transition-colors">Contact</a>
-                        <button onclick="openModal()" class="ml-4 bg-red-900/40 border border-red-500/30 text-red-300 hover:bg-red-900/70 hover:border-red-500 px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 backdrop-blur-md">
-                            <i class="fa-solid fa-lock"></i> Confidential
-                        </button>
+                        
+                        @if(session('is_admin'))
+                            <a href="{{ route('admin.dashboard') }}" class="ml-4 bg-green-900/40 border border-green-500/30 text-green-300 hover:bg-green-900/70 hover:border-green-500 px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 backdrop-blur-md">
+                                <i class="fa-solid fa-folder-open"></i> Dashboard
+                            </a>
+                        @else
+                            <button onclick="openModal()" class="ml-4 bg-red-900/40 border border-red-500/30 text-red-300 hover:bg-red-900/70 hover:border-red-500 px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 backdrop-blur-md">
+                                <i class="fa-solid fa-lock"></i> Confidential
+                            </button>
+                        @endif
                     </div>
                 </div>
 
@@ -90,9 +98,8 @@
 
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
-            <span class="inline-block py-1 px-3 rounded-full bg-element-gold/20 border border-element-gold/40 text-element-gold text-xs font-bold mb-6 tracking-widest uppercase backdrop-blur-sm">
-                Est. 2025 • Kolkata
-            </span>
+            <!-- <span class="inline-block py-1 px-3 rounded-full bg-element-gold/20 border border-element-gold/40 text-element-gold text-xs font-bold mb-6 tracking-widest uppercase backdrop-blur-sm">
+                Kolkata </span> -->
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight text-white drop-shadow-2xl">
                 Curios. Metals. <span class="gradient-text drop-shadow-lg">Legacy.</span>
             </h1>
@@ -116,9 +123,8 @@
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 drop-shadow-md">Our <span class="text-element-gold">Offerings</span></h2>
                 <div class="flex flex-wrap justify-center gap-4 md:gap-12 border-b border-white/30 pb-1 max-w-3xl mx-auto">
-                    <button onclick="switchTab('metals')" id="btn-metals" class="tab-btn active-tab text-lg md:text-xl font-bold px-4 py-2 text-element-gold border-b-4 border-element-gold transition-all duration-300 drop-shadow-sm">Metals</button>
-                    <button onclick="switchTab('curios')" id="btn-curios" class="tab-btn text-lg md:text-xl font-bold px-4 py-2 text-blue-100 border-b-4 border-transparent hover:text-white transition-all duration-300 drop-shadow-sm">Curios</button>
-                    <button onclick="switchTab('antiques')" id="btn-antiques" class="tab-btn text-lg md:text-xl font-bold px-4 py-2 text-blue-100 border-b-4 border-transparent hover:text-white transition-all duration-300 drop-shadow-sm">Antiques</button>
+                    <button onclick="switchTab('metals')" id="btn-metals" class="tab-btn active-tab text-lg md:text-xl font-bold px-4 py-2 text-element-gold border-b-4 border-element-gold transition-all duration-300 hover:text-white transition-all duration-300 drop-shadow-smdrop-shadow-sm">Metals</button>
+                    <button onclick="switchTab('curios')" id="btn-curios" class="tab-btn text-lg md:text-xl font-bold px-4 py-2 text-blue-100 border-b-4 border-transparent hover:text-white transition-all duration-300 drop-shadow-sm">Curios Items</button>
                 </div>
             </div>
 
@@ -132,12 +138,17 @@
 
                 <div id="content-curios" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in">
                     <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40 relative">
-                        <img src="https://images.unsplash.com/photo-1534948216015-843143f76e35?q=80&w=600" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110">
-                        <div class="absolute top-3 right-3 bg-element-blue text-space-dark text-xs font-bold px-2 py-1 rounded shadow-md">Unique</div>
+                        <img src="{{ asset('/assets/copper-image.png') }}" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110" alt="Dhokra Art">
                     </div>
-                    <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40"><img src="https://images.unsplash.com/photo-1605518216965-7f39499df5e9?q=80&w=600" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110"></div>
-                    <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40"><img src="https://images.unsplash.com/photo-1615800098779-1be32e60cca3?q=80&w=600" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110"></div>
-                    <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40"><img src="https://images.unsplash.com/photo-1599839572628-36376936f3ef?q=80&w=600" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110"></div>
+                    <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40">
+                        <img src="{{ asset('/assets/german-bullions-2.jpg') }}" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110" alt="Brass Astrolabe">
+                    </div>
+                    <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40">
+                          <img src="{{ asset('/assets/pltinum.png') }}" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110" alt="Brass Astrolabe">
+                    </div>
+                    <div class="group h-80 rounded-2xl overflow-hidden cursor-pointer shadow-lg border border-white/20 transition-all duration-500 hover:-translate-y-4 hover:shadow-2xl hover:shadow-element-blue/40">
+                        <img src="{{ asset('/assets/iron.png') }}" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-110" alt="Brass Figurine">
+                    </div>
                 </div>
 
                 <div id="content-antiques" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in">
@@ -192,12 +203,12 @@
         </div>
     </section>
 
-<section id="story" class="py-20 relative overflow-hidden border-t border-white/10">
+    <section id="about" class="py-20 relative overflow-hidden border-t border-white/10">
         <div class="absolute top-0 right-0 w-64 h-64 bg-element-gold/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-md">Our <span class="text-element-gold">Legacy</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 drop-shadow-md">About <span class="text-element-gold">Five Elements</span></h2>
                 <div class="w-24 h-1 bg-element-gold mx-auto rounded-full"></div>
             </div>
             
@@ -208,10 +219,8 @@
                 </div>
                 
                 <div class="space-y-6">
-                    <h3 class="text-2xl font-semibold text-white tracking-wide drop-shadow-sm">Constituted in 2026</h3>
-                    
-                    <p class="text-white/80 leading-relaxed text-lg">
-                        Formally established on the <strong>6th of February, 2026</strong>, <span class="text-element-gold font-bold">M/S "FIVE ELEMENTS"</span> was constituted with a mutual resolve to professionally organize the trade of rare valuables.
+                    <h3 class="text-2xl font-semibold text-white tracking-wide drop-shadow-sm">Officially Constituted</h3> <p class="text-white/80 leading-relaxed text-lg">
+                        <span class="text-element-gold font-bold">M/S "FIVE ELEMENTS"</span> was constituted with a mutual resolve to professionally organize the trade of curios items and valuables.
                     </p>
                     
                     <p class="text-white/80 leading-relaxed">
@@ -225,7 +234,7 @@
                     <div class="pt-4 flex items-center gap-4">
                         <div class="h-12 w-1 bg-gradient-to-b from-element-gold to-transparent rounded-full"></div>
                         <div>
-                            <p class="text-element-gold font-bold uppercase text-sm tracking-widest">Est. 2026</p>
+                            <p class="text-element-gold font-bold uppercase text-sm tracking-widest">M/S FIVE ELEMENTS</p>
                             <p class="text-gray-300 text-xs">Kolkata, West Bengal</p>
                         </div>
                     </div>
@@ -241,12 +250,12 @@
             </div>
             <div class="grid md:grid-cols-2 gap-8 rounded-3xl overflow-hidden glass-panel border border-white/30">
                 <div class="p-8 md:p-12 flex flex-col justify-center bg-black/20">
-                    <h3 class="text-2xl font-bold text-white mb-8 border-b border-white/20 pb-4">Headquarters</h3>
+                    <h3 class="text-2xl font-bold text-white mb-8 border-b border-white/20 pb-4">Office Address</h3>
                     <div class="space-y-6 text-lg text-gray-200">
-                        <div class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-element-gold text-2xl mt-1"></i><div><p class="font-bold text-white">Five Elements Trading</p><p>123, Park Street Area</p><p>Kolkata, West Bengal, 700016</p><p>India</p></div></div>
-                        <div class="flex items-center gap-4"><i class="fa-solid fa-phone text-element-gold text-2xl"></i><p>+91 98765 43210</p></div>
+                        <div class="flex items-start gap-4"><i class="fa-solid fa-location-dot text-element-gold text-2xl mt-1"></i><div><p class="font-bold text-white">Five Elements Office</p><p>North dum dum</p><p>Kolkata ,West Bengal, 700051</p><p>India</p></div></div>
+                        <!-- <div class="flex items-center gap-4"><i class="fa-solid fa-phone text-element-gold text-2xl"></i><p>+91 98765 43210</p></div> -->
                         <div class="flex items-center gap-4"><i class="fa-solid fa-envelope text-element-gold text-2xl"></i><p>contact@fiveelements.com</p></div>
-                        <div class="flex items-center gap-4"><i class="fa-solid fa-clock text-element-gold text-2xl"></i><p>Mon - Sat: 10:00 AM - 7:00 PM</p></div>
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-clock text-element-gold text-2xl"></i><p>Mon - Fri: 10:00 AM - 7:00 PM</p></div>
                     </div>
                 </div>
                 <div class="p-8 md:p-12">
@@ -271,87 +280,29 @@
         <div class="flex justify-center items-center gap-2 mb-4">
              <span class="font-bold text-lg text-white">FIVE <span class="text-element-gold">ELEMENTS</span></span>
         </div>
-        <p class="text-gray-300 text-sm">© 2026 Five Elements. Licensed for Curio & Metal Trading.</p>
-    </footer>
+        <p class="text-gray-300 text-sm">© 2026 Five Elements. Licensed for Curio & Metal Trading</p> </footer>
 
-    <div id="confidentialModal" class="fixed inset-0 z-[100] {{ session('is_admin') || session('error') || session('login_success') ? '' : 'hidden' }}">
+    <div id="confidentialModal" class="fixed inset-0 z-[100] {{ session('error') || session('login_success') ? '' : 'hidden' }}">
         <div class="absolute inset-0 bg-space-dark/80 backdrop-blur-sm" onclick="closeModal()"></div>
-        
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full {{ session('is_admin') ? 'max-w-4xl' : 'max-w-2xl' }} px-4 transition-all duration-300">
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md px-4">
             
-            @if(!session('is_admin'))
-                <div id="loginScreen" class="glass-panel p-8 rounded-2xl border border-red-500/30">
-                    <div class="text-center mb-8">
-                        <i class="fa-solid fa-shield-halved text-4xl text-red-500 mb-4 drop-shadow-lg"></i>
-                        <h2 class="text-2xl font-bold text-white drop-shadow-md">Confidential Portal</h2>
-                    </div>
-                    <form action="{{ route('admin.login') }}" method="POST" class="space-y-4">
-                        @csrf
-                        <input type="password" name="password" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-element-gold" placeholder="Enter secure code...">
-                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg w-full transition-colors shadow-lg">Unlock</button>
-                        @if(session('error'))
-                            <p class="text-red-400 text-sm text-center font-bold">{{ session('error') }}</p>
-                        @endif
-                    </form>
-                    <button onclick="closeModal()" class="mt-6 text-gray-400 text-sm w-full text-center hover:text-white">Cancel</button>
+            <div id="loginScreen" class="glass-panel p-8 rounded-2xl border border-red-500/30 shadow-2xl">
+                <div class="text-center mb-8">
+                    <i class="fa-solid fa-shield-halved text-4xl text-red-500 mb-4 drop-shadow-lg"></i>
+                    <h2 class="text-2xl font-bold text-white drop-shadow-md">Restricted Access</h2>
+                    <p class="text-gray-400 text-sm mt-2">Enter your authorized code to access the repository.</p>
                 </div>
-            @else
-                <div id="dashboardScreen" class="glass-panel p-8 rounded-2xl border border-green-500/30">
-                    
-                    <div class="flex justify-between items-center mb-6 pb-6 border-b border-white/20">
-                        <h2 class="text-2xl font-bold text-white drop-shadow-md">Secure Repository</h2>
-                        <a href="{{ route('admin.logout') }}" class="text-gray-300 hover:text-white text-sm font-bold">Logout</a>
-                    </div>
+                <form action="{{ route('admin.login') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <input type="password" name="password" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-element-gold focus:ring-1 focus:ring-element-gold transition-all" placeholder="Enter secure code...">
+                    <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-800 hover:from-red-500 hover:to-red-700 text-white font-bold py-3 rounded-lg w-full transition-all shadow-lg transform hover:-translate-y-0.5">Unlock Portal</button>
+                    @if(session('error'))
+                        <p class="text-red-400 text-sm text-center font-bold bg-red-900/20 py-2 rounded">{{ session('error') }}</p>
+                    @endif
+                </form>
+                <button onclick="closeModal()" class="mt-6 text-gray-400 text-sm w-full text-center hover:text-white transition-colors">Return to Homepage</button>
+            </div>
 
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-black/20 p-6 rounded-xl border border-white/10">
-                            <h3 class="text-lg font-bold text-element-blue mb-4"><i class="fa-solid fa-cloud-arrow-up mr-2"></i> Upload Document</h3>
-                            
-                            <form action="{{ route('admin.upload') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-                                @csrf
-                                
-                                <div>
-                                    <label class="block text-xs text-gray-400 mb-1">Document Name</label>
-                                    <input type="text" name="filename" required placeholder="e.g., Certificate of Purity" 
-                                           class="w-full bg-space-dark/60 border border-white/20 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-element-blue">
-                                </div>
-
-                                <div class="relative">
-                                    <label class="block text-xs text-gray-400 mb-1">Select File</label>
-                                    <input type="file" name="file" required class="w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-element-blue/10 file:text-element-blue hover:file:bg-element-blue/20 cursor-pointer">
-                                </div>
-
-                                <button type="submit" class="w-full bg-gradient-to-r from-element-blue to-blue-600 text-black font-bold py-2 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all text-sm mt-2">
-                                    Secure Upload
-                                </button>
-                            </form>
-                        </div>
-
-                        <div class="bg-black/20 p-6 rounded-xl border border-white/10 flex flex-col h-full">
-                            <h3 class="text-lg font-bold text-element-gold mb-4"><i class="fa-solid fa-folder-open mr-2"></i> Stored Files</h3>
-                            
-                            <div class="space-y-2 overflow-y-auto pr-2 custom-scrollbar" style="max-height: 250px;">
-                                @forelse($documents as $doc)
-                                    <div class="bg-black/30 p-3 rounded-lg flex justify-between items-center hover:bg-black/50 transition-colors group">
-                                        <div class="flex items-center gap-3 overflow-hidden">
-                                            <i class="fa-regular fa-file text-element-gold shrink-0"></i>
-                                            <div class="flex flex-col min-w-0">
-                                                <a href="{{ Storage::url($doc->path) }}" target="_blank" class="text-sm text-gray-200 hover:text-white truncate font-medium group-hover:text-element-gold transition-colors">
-                                                    {{ $doc->filename }} </a>
-                                                <span class="text-[10px] text-gray-500">{{ $doc->created_at->format('M d, Y') }}</span>
-                                            </div>
-                                        </div>
-                                        <a href="{{ Storage::url($doc->path) }}" download class="text-gray-500 hover:text-element-blue ml-2"><i class="fa-solid fa-download"></i></a>
-                                    </div>
-                                @empty
-                                    <p class="text-center text-gray-500 text-sm py-8">No documents found.</p>
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            @endif
         </div>
     </div>
 
